@@ -3,7 +3,7 @@
 <footer class="sticky-footer bg-white">
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">
-			<span>Copyright &copy; <a href="https://amyndm.com">Amyn Digital Marketing & IT Solutions</a> 2020</span>
+			<span>Todos os direitos reservados &copy; <?php echo date('Y'); ?> &nbsp; | Por <a href="https://amyndm.com/">Amyn Digital Marketing</a></span>
 		</div>
 	</div>
 </footer>
@@ -41,14 +41,20 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="<?php base_url();?>public/vendor/jquery/jquery.min.js"></script>
-<script src="<?php base_url();?>public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url();?>public/vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="<?php base_url();?>public/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="<?php echo base_url();?>public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="<?php base_url();?>public/js/sb-admin-2.min.js"></script>
+<script src="<?php echo base_url();?>public/js/sb-admin-2.min.js"></script>
+
+<?php if (isset($scripts)) : ?>
+	<?php foreach ($scripts as $script) : ?>
+		<script src="<?php echo base_url('public/' . $script);?>"></script>
+	<?php endforeach; ?>
+<?php endif; ?>
 
 </body>
 

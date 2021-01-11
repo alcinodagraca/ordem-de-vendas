@@ -1,0 +1,101 @@
+
+<?php $this->load->view('layout/sidebar') ?>
+
+<?php $this->load->view('layout/navbar') ?>
+
+
+	<!-- Main Content -->
+	<div id="content">
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="<?php echo base_url('usuarios')?>">Users</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Register user</li>
+				</ol>
+			</nav>
+
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<a href="<?php echo base_url('usuarios'); ?>" class="btn btn-success btn-sm float-right"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+					&nbsp; Back</a>
+				</div>
+				<div class="card-body">
+					<form method="post" name="form_edit">
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Name</label>
+								<input type="text" class="form-control" name="first_name" value="" placeholder="Enter your name">
+								<?php echo form_error('first_name', '<small class="form-text text-danger">', '</small>'); ?>
+							</div>
+
+							<div class="col-md-4">
+								<label>Last Name</label>
+								<input type="text" class="form-control" name="last_name" value="" placeholder="Enter your Last name">
+								<?php echo form_error('last_name', '<small class="form-text text-danger">', '</small>'); ?>
+							</div>
+
+							<div class="col-md-4">
+								<label>Email</label>
+								<input type="email" class="form-control" name="email" value="" placeholder="Enter your email">
+								<?php echo form_error('email', '<small class="form-text text-danger">', '</small>'); ?>
+							</div>
+						</div>
+
+						<div class="form-group row">
+
+							<div class="col-md-4">
+								<label>Username</label>
+								<input type="text" class="form-control" name="username" value="" placeholder="Enter your username">
+								<?php echo form_error('username', '<small class="form-text text-danger">', '</small>'); ?>
+							</div>
+
+							<div class="col-md-4">
+								<label>Status</label>
+								<select name="active" class="form-control">
+									<option value="0">Deactive</option>
+									<option value="1">Active</option>
+								</select>
+							</div>
+
+							<div class="col-md-4">
+								<label>Group</label>
+								<select name="user_group" class="form-control">
+									<option value="1">>Administrator</option>
+									<option value="2">Sales</option>
+								</select>
+							</div>
+
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-6">
+								<label>Password</label>
+								<input type="password" class="form-control" name="password" placeholder="Enter your password">
+								<?php echo form_error('password', '<small class="form-text text-danger">', '</small>'); ?>
+
+							</div>
+
+							<div class="col-md-6">
+								<label>Confirm Password</label>
+								<input type="password" class="form-control" name="confirm_password" placeholder="Confirm your password">
+								<?php echo form_error('confirm_password', '<small class="form-text text-danger">', '</small>'); ?>
+							</div>
+						</div>
+
+						<br>
+
+						<button type="submit" class="btn btn-primary btn-sm">Save</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</div>
+	<!-- End of Main Content -->
