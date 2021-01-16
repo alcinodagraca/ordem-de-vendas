@@ -1,17 +1,20 @@
+<?php if(!$this->router->fetch_class() == 'login') : ?>
 
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-	<div class="container my-auto">
-		<div class="copyright text-center my-auto">
-			<span>Todos os direitos reservados &copy; <?php echo date('Y'); ?> &nbsp; | Por <a href="https://amyndm.com/">Amyn Digital Marketing</a></span>
+
+	<!-- Footer -->
+	<footer class="sticky-footer bg-white">
+		<div class="container my-auto">
+			<div class="copyright text-center my-auto">
+				<span>Todos os direitos reservados &copy; <?php echo date('Y'); ?> &nbsp; | Por <a href="https://amyndm.com/">Amyn Digital Marketing</a></span>
+			</div>
 		</div>
-	</div>
-</footer>
-<!-- End of Footer -->
+	</footer>
+	<!-- End of Footer -->
+
+<?php endif; ?>
 
 </div>
 <!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
 
@@ -34,7 +37,7 @@
 			<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				<a class="btn btn-primary" href="login.html">Logout</a>
+				<a class="btn btn-primary" href="<?php echo base_url('login/logout'); ?>">Logout</a>
 			</div>
 		</div>
 	</div>

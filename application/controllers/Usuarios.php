@@ -7,6 +7,11 @@ class Usuarios extends CI_Controller{
 
 		parent::__construct();
 
+		if (!$this->ion_auth->logged_in()){
+			$this->session->set_flashdata('info', 'Login using username and password');
+			redirect('login');
+		}
+
 	}
 
 	public function index(){
@@ -45,7 +50,30 @@ class Usuarios extends CI_Controller{
 
 
 		if($this->form_validation->run()){
-			exit('validated');
+
+			$username = $this->security->xss_clean($this->input->post('username'));
+			$password = $this->security->xss_clean($this->input->post('password'));
+			$email = 	$this->security->xss_clean($this->input->post('email'));
+
+			$additional_data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => 	$this->input->post('last_name'),
+				'active' => 	$this->input->post('active'),
+				'username' => 	$this->input->post('username')
+			);
+			$group = array($this->input->post('user_group'));
+
+			//Cleaning data
+			$additional_data = $this->security->xss_clean($additional_data);
+			$group           = $this->security->xss_clean($group);
+
+			if($this->ion_auth->register($username, $password, $email, $additional_data, $group)){
+				$this->session->set_flashdata('success', 'Dados salvos com sucesso');
+			}else{
+				$this->session->set_flashdata('error', 'Erro ao salvar dados');
+			}
+
+			redirect('usuarios');
 		}else{
 			//Validation Error
 			$data = array(
@@ -138,6 +166,26 @@ class Usuarios extends CI_Controller{
 
 		}
 
+	}
+
+	public function del($user_id){
+		if(!$user_id || !$this->ion_auth->user($user_id)->row()){
+			$this->session->set_flashdata('error', 'User not found');
+			redirect('usuarios');
+		}
+
+		if($this->ion_auth->is_admin($user_id)){
+			$this->session->set_flashdata('error', 'Administrator cannot be deleted');
+			redirect('usuarios');
+		}
+
+		if($this->ion_auth->delete_user($user_id)){
+			$this->session->set_flashdata('success', 'User deleted successfully');
+			redirect('usuarios');
+		}else{
+			$this->session->set_flashdata('error', 'Error deleting user');
+			redirect('usuarios');
+		}
 	}
 
 	public function email_check($email){

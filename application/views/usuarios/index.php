@@ -41,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 
-						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
 							<strong><i class="fa fa-exclamation-triangle" aria-hidden="true"> &nbsp; </i><?php echo $message; ?></strong>
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -65,6 +65,7 @@
 								<th>ID</th>
 								<th>User Name</th>
 								<th>Email</th>
+								<th>Group</th>
 								<th class="text-center">Status</th>
 								<th class="text-right no-sort">Actions</th>
 							</tr>
@@ -75,13 +76,33 @@
 								<td><?php echo$user->id ?></td>
 								<td><?php echo$user->username ?></td>
 								<td><?php echo$user->email ?></td>
+								<td><?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrator' : 'Sales'); ?></td>
 								<td class="text-center pr-4"><?php echo ($user->active == 1 ? '<span class="badge badge-info btn-sm">Active</span>' : '<span class="badge badge-warning btn-sm">Desactive</span>') ?></td>
 								<td class="text-right">
-									<a href="<?php echo base_url('usuarios/edit/' . $user->id); ?>" title="Edit" class="btn btn-sm btn-primary"><i class="fa fa-user-edit" aria-hidden="true"></i></a>
-									<a href="<?php ?>" title="Delete" class="btn btn-sm btn-danger"><i class="fa fa-user-times" aria-hidden="true"></i>
-									</a>
+									<a href="<?php echo base_url('usuarios/edit/' . $user->id); ?>" title="Edit" class="btn btn-sm btn-primary"><i class="fa fa-user-edit" aria-hidden="true"></i>&nbsp; Edit</a>
+									<a href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user->id; ?>" title="Delete" class="btn btn-sm btn-danger"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp; Delete</a>
 								</td>
 							</tr>
+
+								<div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+									 aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Are you Sure?</h5>
+												<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">Do you really want to delete these records. This process cannot be undone.</div>
+											<div class="modal-footer">
+												<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
+												<a class="btn btn-danger btn-sm" href="<?php echo base_url('usuarios/del/' . $user->id);?>">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
 							<?php endforeach;?>
 							</tbody>
 						</table>

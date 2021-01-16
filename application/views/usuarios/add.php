@@ -14,7 +14,7 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="<?php echo base_url('usuarios')?>">Users</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Register user</li>
+					<li class="breadcrumb-item active" aria-current="page"><?php echo $title; ?></li>
 				</ol>
 			</nav>
 
@@ -29,19 +29,19 @@
 						<div class="form-group row">
 							<div class="col-md-4">
 								<label>Name</label>
-								<input type="text" class="form-control" name="first_name" value="" placeholder="Enter your name">
+								<input type="text" class="form-control" name="first_name" value="<?php echo set_value('first_name'); ?>" placeholder="Enter your name">
 								<?php echo form_error('first_name', '<small class="form-text text-danger">', '</small>'); ?>
 							</div>
 
 							<div class="col-md-4">
 								<label>Last Name</label>
-								<input type="text" class="form-control" name="last_name" value="" placeholder="Enter your Last name">
+								<input type="text" class="form-control" name="last_name" value="<?php echo set_value('last_name'); ?>" placeholder="Enter your Last name">
 								<?php echo form_error('last_name', '<small class="form-text text-danger">', '</small>'); ?>
 							</div>
 
 							<div class="col-md-4">
 								<label>Email</label>
-								<input type="email" class="form-control" name="email" value="" placeholder="Enter your email">
+								<input type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="Enter your email">
 								<?php echo form_error('email', '<small class="form-text text-danger">', '</small>'); ?>
 							</div>
 						</div>
@@ -50,7 +50,7 @@
 
 							<div class="col-md-4">
 								<label>Username</label>
-								<input type="text" class="form-control" name="username" value="" placeholder="Enter your username">
+								<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" placeholder="Enter your username">
 								<?php echo form_error('username', '<small class="form-text text-danger">', '</small>'); ?>
 							</div>
 
@@ -65,7 +65,7 @@
 							<div class="col-md-4">
 								<label>Group</label>
 								<select name="user_group" class="form-control">
-									<option value="1">>Administrator</option>
+									<option value="1">Administrator</option>
 									<option value="2">Sales</option>
 								</select>
 							</div>
